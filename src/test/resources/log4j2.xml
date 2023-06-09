@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+	<Properties>
+		<Property name="customlayout">%d{HH:mm:ss.SSS} %-48logger %-20marker %-16level - %msg%ex%n</Property>
+	</Properties>
+	<CustomLevels>
+		<CustomLevel name="ASSERTION_FAILED" intLevel="200"/>
+	</CustomLevels>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${customlayout}" />
+		</Console>
+		<File name="trace" fileName="logs/trace.log" append="false">
+			<PatternLayout pattern="${customlayout}"/>
+		</File>
+		<File name="info" fileName="logs/info.log" append="false">
+			<PatternLayout pattern="${customlayout}" />
+		</File>
+		<File name="assert" fileName="logs/assert.log" append="false">
+			<PatternLayout pattern="${customlayout}" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Root level="TRACE">
+			<AppenderRef ref="console" level="DEBUG" />
+			<AppenderRef ref="trace"   level="TRACE" />
+			<AppenderRef ref="info"    level="INFO" />
+			<AppenderRef ref="assert"  level="ASSERTION_FAILED" />
+		</Root>
+	</Loggers>
+</Configuration>

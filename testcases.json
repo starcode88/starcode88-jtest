@@ -1,0 +1,16 @@
+{
+    "testcases": [
+        {
+            "id": "ID",
+            "description": "Description",
+            "action": "Action",
+            "expectedResult": "Expected Result"
+        },
+        {
+            "id": "UT-0001-01",
+            "description": "Test formatter in class TextBuilder",
+            "action": "Execute function TextBuilder.formatParagraph(...) with some sample text",
+            "expectedResult": "The log file shows some well formatted text"
+        }
+    ]
+}
