@@ -70,9 +70,7 @@ public class TestCaseDescriptions {
 	public void load(Path path) throws IOException, JsonParserException {
 		try {
 			logger.debug("Start reading JSON file {}", path.toString());
-			String content;
-			content = Files.readString(path);
-			JsonObject root = JsonParser.readObject(content);
+			JsonObject root = JsonParser.readObject(path);
 			load(root);
 		} catch (IOException e) {
 			logger.error("Reading JSON file {} aborted due to I/O error (IOException)", path.toString());
@@ -87,7 +85,7 @@ public class TestCaseDescriptions {
 			logger.debug("Loop over all elements in the array given by element with name \"testcases\"");
 			for (JsonValue testcase : testcases) {
 				logger.debug("Get element from array, it is expected that the data type is {}", ValueType.OBJECT);
-				JsonObject jsonTestCase = JsonParser.getAsObject(testcase);
+				JsonObject jsonTestCase = JsonParser.getValueAsObject(testcase);
 				TestCaseDescription desc = new TestCaseDescription();
 				JsonParser.copyString(jsonTestCase, "id", (value) -> desc.setId(value));
 				JsonParser.copyString(jsonTestCase, "description", (description) -> desc.setDescription(description));

@@ -86,7 +86,7 @@ public class TestCaseDescription {
 	}
 	
 	private void logParagraph(String paragraph) {
-		String formatted = TextBuilder.formatParagraph(paragraph, "    ", 60);
+		String formatted = TextBuilder.formatParagraph(paragraph, "    ", 70);
 		String[] lines = formatted.split("\n");
 		for (String line : lines) {
 			logger.info(line);
