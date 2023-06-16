@@ -17,12 +17,12 @@ public class TextBuilder {
 		return "Unexpected " + e.getClass().getName() + ": " + e.getMessage();
 	}
 	
-	public static String prepareForAllTestsInClass(String prefix, String baseID) {
-		return "Prepare test setup for all tests in test class " + prefix + "-" + baseID;
+	public static String prepareForAllTestsInClass(String classId) {
+		return "Prepare test setup for all tests in test class " + classId;
 	}
 	
-	public static String prepareForSingleTestInClass(String prefix, String baseID) {
-		return "Prepare test setup for single test in test class " + prefix + "-" + baseID;
+	public static String prepareForSingleTestInClass(String classId) {
+		return "Prepare test setup for single test in test class " + classId;
 	}
 	
 	public static String formatParagraph(String paragraph, String indentation, int maxLength) {

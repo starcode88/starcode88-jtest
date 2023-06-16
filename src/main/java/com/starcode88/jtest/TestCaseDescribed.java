@@ -1,10 +1,14 @@
 package com.starcode88.jtest;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starcode88.jtest.InitializationError;
 import com.starcode88.jtest.TestCase;
 import com.starcode88.jtest.TestCaseDescription;
@@ -18,23 +22,30 @@ import com.starcode88.jtest.TextBuilder;
  * We will directly use the test case descriptions
  * from the file "testcases.json"
  */
-public class TestCasePlus extends TestCase {
+public class TestCaseDescribed extends TestCase {
 	
-	private static Logger logger = LogManager.getLogger(TestCasePlus.class);
+	private static Logger logger = LogManager.getLogger(TestCaseDescribed.class);
 	
-	public static void setUpBeforeClass(String prefix, String baseID) 
+	private static TestCaseDescriptions descs = null;
+	
+	public static void setUpBeforeClass(String classId) 
 				throws InitializationError {
-		TestCase.setUpBeforeClass(prefix, baseID);
+		TestCase.setUpBeforeClass(classId);
+		if (descs == null) {
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				descs = mapper.readValue(new File("testcases.json"), TestCaseDescriptions.class);
+				descs.buildIndex();
+			} catch (IOException e) {
+				throw logger.throwing(new InitializationError(TextBuilder.unexpectedException(e), e));
+			}
+		}
 	}
 	
 	public void runTest(String id, TestRunner runner) throws TestExecutionError {
-		TestCaseDescriptions descs;
-		try {
-			descs = TestCaseDescriptions.getInstance();
-		} catch (IOException | JsonParserException e) {
-			throw logger.throwing(new TestExecutionError(TextBuilder.unexpectedException(e), e));
+		if (descs == null) {
+			throw logger.throwing(new TestExecutionError("The list of test case descriptions is null. It should have been loaded already in method setUpBeforeClass. Maybe we forgot to call the method setUpBeforeClass before running the test implementation"));
 		}
-
 		TestCaseDescription desc = descs.get(id);
 		if (desc == null) {
 			logger.warn("No description for test case " + id + " found.");

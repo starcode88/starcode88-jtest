@@ -14,30 +14,26 @@ public class TestCase {
 	 * message.
 	 * 
 	 * @param logger The logger instance from your test case class
-	 * @param prefix Prefix of the test. It shall be 'TC' for the normal
-	 *               test cases (integration tests), 'ST' for tests which
-	 *               verify other test cases ('ST' stands for 'self test') and
-	 *               'UT' for unit tests which are normal unit tests to check
-	 *               our additional classes beside the test cases.
-	 * @param baseID We do not know which concrete test case will be executed
-	 *               after the setUpBeforeClass method, therefore we just
-	 *               can log the baseID.
+	 * @param classId Prefix of the test plus BASE_ID. 
+	 *                it shall be 'TC' for the normal
+	 *                test cases (integration tests), 'ST' for tests which
+	 *                verify other test cases ('ST' stands for 'self test') and
+	 *                'UT' for unit tests which are normal unit tests to check
+	 *                our additional classes beside the test cases.
 	 * @throws InitializationError
 	 */
-	public static void setUpBeforeClass(String prefix, String baseID) throws InitializationError {
+	public static void setUpBeforeClass(String classId) throws InitializationError {
 		logger.info(TextBuilder.SINGLE_LINE);
-		logger.info(TextBuilder.prepareForAllTestsInClass(prefix, baseID));
+		logger.info(TextBuilder.prepareForAllTestsInClass(classId));
 	}
 	
 	/**
 	 * Call this function here from your setUp method in your class.
-	 * @param logger
-	 * @param prefix
-	 * @param baseID
+	 * @param classId
 	 */
-	public void setUp(String prefix, String baseID) {
+	public void setUp(String classId) {
 		logger.info(TextBuilder.SINGLE_LINE);
-		logger.info(TextBuilder.prepareForSingleTestInClass(prefix, baseID));
+		logger.info(TextBuilder.prepareForSingleTestInClass(classId));
 	}
 
 	/**

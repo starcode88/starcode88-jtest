@@ -12,7 +12,7 @@ import com.starcode88.jtest.TextBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-class UT_0001_TestTextBuilder extends TestCasePlus {
+class UT_0001_TestTextBuilder extends TestCaseDescribed {
 	
 	public static final String BASE_ID = "0001";
 	
@@ -20,7 +20,7 @@ class UT_0001_TestTextBuilder extends TestCasePlus {
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws InitializationError {
-		setUpBeforeClass("UT",  BASE_ID);
+		setUpBeforeClass("UT-" + BASE_ID);
 	}
 	
 	@Test
