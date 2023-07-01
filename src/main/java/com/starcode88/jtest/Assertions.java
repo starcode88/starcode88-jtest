@@ -12,6 +12,10 @@ public class Assertions {
 	
 	private static Level assertionFailedLevel = Level.getLevel("ASSERTION_FAILED");
 	
+	public static void setLogLevel(String level) {
+		assertionFailedLevel = Level.getLevel(level);
+	}
+	
 	public static void assertArrayEquals(byte[] expected, byte[] actual) {
 		try {
 			org.junit.jupiter.api.Assertions.assertArrayEquals(expected, actual);
@@ -28,6 +32,14 @@ public class Assertions {
 		}
 	}
 
+	public static void assertEquals(int expected, int actual) {
+		try {
+			org.junit.jupiter.api.Assertions.assertEquals(expected, actual);
+		} catch (AssertionFailedError e) {
+			throw logger.throwing(assertionFailedLevel, e);
+		}
+	}
+	
 	public static void assertEquals(int expected, int actual, String message) {
 		try {
 			org.junit.jupiter.api.Assertions.assertEquals(expected, actual, message);
