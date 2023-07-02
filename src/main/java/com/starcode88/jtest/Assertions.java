@@ -72,6 +72,14 @@ public class Assertions {
 		}
 	}
 	
+	public static void assertFalse(boolean condition, String message) {
+		try {
+			org.junit.jupiter.api.Assertions.assertFalse(condition, message);
+		}  catch (AssertionFailedError e) {
+			throw logger.throwing(assertionFailedLevel, e);
+		}
+	}
+	
 	public static void assertNotNull(Object obj) {
 		try {
 			org.junit.jupiter.api.Assertions.assertNotNull(obj);

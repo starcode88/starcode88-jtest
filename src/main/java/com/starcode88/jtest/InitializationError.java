@@ -8,7 +8,9 @@ package com.starcode88.jtest;
  */
 public class InitializationError extends Exception {
 
-    public InitializationError(String message) {
+	private static final long serialVersionUID = 962488575822814039L;
+
+	public InitializationError(String message) {
         super(message);
     }
 
