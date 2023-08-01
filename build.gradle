@@ -4,8 +4,8 @@ plugins {
 	id 'eclipse'
 }
 
-group = 'com.starcode88'
-version = '1.0.2'
+group = 'com.github.starcode88'
+version = '1.1.0'
 
 repositories {
 	mavenCentral()

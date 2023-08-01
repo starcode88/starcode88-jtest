@@ -16,6 +16,14 @@ public class Assertions {
 		assertionFailedLevel = Level.getLevel(level);
 	}
 	
+	public static void assertAll(Executable... executables) {
+		try {
+			org.junit.jupiter.api.Assertions.assertAll(executables);
+		} catch (AssertionError e) {
+			throw logger.throwing(assertionFailedLevel, e);
+		}
+	}
+	
 	public static void assertArrayEquals(byte[] expected, byte[] actual) {
 		try {
 			org.junit.jupiter.api.Assertions.assertArrayEquals(expected, actual);

@@ -1,16 +1,9 @@
 package com.starcode88.jtest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import com.starcode88.jtest.InitializationError;
-import com.starcode88.jtest.TestExecutionError;
-import com.starcode88.jtest.TextBuilder;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class UT_0001_TestTextBuilder extends TestCaseDescribed {
 	

@@ -6,16 +6,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starcode88.jtest.InitializationError;
-import com.starcode88.jtest.TestCase;
-import com.starcode88.jtest.TestCaseDescription;
-import com.starcode88.jtest.TestCaseDescriptions;
-import com.starcode88.jtest.TestExecutionError;
-import com.starcode88.jtest.TestRunner;
-import com.starcode88.jtest.TextBuilder;
 
 /**
  * For testing our test framework we already can just use it.
@@ -43,14 +34,19 @@ public class TestCaseDescribed extends TestCase {
 	}
 	
 	public void runTest(String id, TestRunner runner) throws TestExecutionError {
+		if (id == null) throw logger.throwing(new IllegalArgumentException("The argument <id> is null."));
+		if (runner == null) throw logger.throwing(new IllegalArgumentException("The argument <runner> is null."));
+
 		if (descs == null) {
 			throw logger.throwing(new TestExecutionError("The list of test case descriptions is null. It should have been loaded already in method setUpBeforeClass. Maybe we forgot to call the method setUpBeforeClass before running the test implementation"));
 		}
+		
+		
 		TestCaseDescription desc = descs.get(id);
 		if (desc == null) {
 			logger.warn("No description for test case " + id + " found.");
 			desc = new TestCaseDescription(
-					"?", 
+					id, 
 					"No description available because test case with id "
 					+ id + " hasn't be found in the test case descriptions.",
 					"n/a", 
