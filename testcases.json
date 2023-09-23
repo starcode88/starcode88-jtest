@@ -3,188 +3,42 @@
         {
             "id": "ID",
             "description": "Description",
-            "action": "Action",
-            "expectedResult": "Expected Result"
+            "testSteps" : [
+                {
+                    "action": "Action",
+                    "expectedResult": "Expected Result"
+                }    
+            ]
         },
         {
             "id": "UT-0001-01",
             "description": "Test formatter in class TextBuilder",
-            "action": "Execute function TextBuilder.formatParagraph(\u2026) with some sample text",
-            "expectedResult": "The log file shows some well formatted text"
+            "testSteps" : [
+                {
+                    "action": "Execute function TextBuilder.formatParagraph(\u2026) with some sample text",
+                    "expectedResult": "The log file shows some well formatted text"
+                }
+            ]
         },
         {
             "id": "UT-0002-01",
             "description": "Just print a log message, but with using the test framework which is provided by the implementation. So this message here would be visible in the log file.",
-            "action": "Just print a log message",
-            "expectedResult": "The tescase will be reported in the log file"
+            "testSteps": [
+                {
+                    "action": "Just print a log message",
+                    "expectedResult": "The tescase will be reported in the log file"
+                }
+            ]
         },
         {
             "id": "UT-0002-02",
             "description": "Try to parse JSON String {\"elements\": [\"Hello\", null, true, false, 1, 1.5, {\"subelement\": \"xyz\"}]}",
-            "action": "Parse the string",
-            "expectedResult": "String can be parsed and values can be accessed"
-        },
-        {
-            "id": "UT-0002-03",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-04",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-05",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-06",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-07",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-08",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-09",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-10",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-11",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-12",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-13",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-14",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-15",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-16",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-17",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-18",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-19",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-20",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-21",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-22",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-23",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-24",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-25",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-26",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-27",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-28",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
-        },
-        {
-            "id": "UT-0002-29",
-            "description": "n/a",
-            "action": "n/a",
-            "expectedResult": "n/a"
+            "testSteps": [
+                {
+                    "action": "Parse the string",
+                    "expectedResult": "String can be parsed and values can be accessed"
+                }
+            ]
         }
     ]
 }

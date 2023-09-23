@@ -1,5 +1,8 @@
 package com.starcode88.jtest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,23 +13,42 @@ public class TestCaseDescription {
 	private String id = "";
 	
 	private String description = "";
-	
-	private String action = "";
-	
-	private String expectedResult = "";
-	
+
 	private boolean emphasize = false;
+	
+	private List<TestStep> testSteps = null; 
+	
+	public List<TestStep> getTestSteps() {
+		return testSteps;
+	}
+
+	public void setTestSteps(List<TestStep> testSteps) {
+		this.testSteps = testSteps;
+	}
 
 	public TestCaseDescription() {
 	}
 	
+	public TestCaseDescription(String id, String description, List<TestStep> testSteps) {
+		this.id = id;
+		this.description = description;
+		this.testSteps = testSteps;
+	}
+
+	public TestCaseDescription(String id, String description, TestStep firstTestStep) {
+		this.id = id;
+		this.description = description;
+		testSteps = new ArrayList<TestStep>();
+		testSteps.add(firstTestStep);		
+	}
+
 	public TestCaseDescription(String id, String description, String action, String expectedResult) {
 		this.id = id;
 		this.description = description;
-		this.action = action;
-		this.expectedResult = expectedResult;
+		testSteps = new ArrayList<TestStep>();
+		testSteps.add(new TestStep(action, expectedResult));
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -41,22 +63,6 @@ public class TestCaseDescription {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getAction() {
-		return action;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
-	}
-
-	public String getExpectedResult() {
-		return expectedResult;
-	}
-
-	public void setExpectedResult(String expectedResult) {
-		this.expectedResult = expectedResult;
 	}
 
 	public TestCaseDescription emphasize() {
@@ -78,10 +84,28 @@ public class TestCaseDescription {
 		logSeparator();
 		logger.info("Description:");
 		logParagraph(description);
-		logger.info("Action:");
-		logParagraph(action);
-		logger.info("Expected Result:");
-		logParagraph(expectedResult);
+		logger.info("");
+		
+		if (testSteps.size() == 1) {
+			TestStep step = testSteps.get(0);
+			logger.info("Action:");
+			logParagraph(step.getAction());
+			logger.info("");
+			logger.info("Expected result:");
+			logParagraph(step.getExpectedResult());
+			logger.info("");
+		} else {
+			int count = 1;
+			for (TestStep step : testSteps) {
+				String text = "" + count + ". Action: ";
+				logger.info(text);
+				logParagraph(step.getAction());
+				logger.info("   Expected result: ");
+				logParagraph(step.getExpectedResult());
+				logger.info("");
+				count ++;
+			}
+		}		
 		logSeparator();
 	}
 	
@@ -91,21 +115,20 @@ public class TestCaseDescription {
 		for (String line : lines) {
 			logger.info(line);
 		}
-		logger.info("");
 	}
 
 	public void logFooter(TestResult result) {
 		logSeparator();
 		switch (result) {
 		case PASSED:
-			logger.info("TEST " + this.id + " " + result);
+			logger.info("TEST CASE " + this.id + " " + result);
 			break;
 		case FAILED:
-			logger.error("TEST " + this.id + " " + result);
+			logger.error("TEST CASE " + this.id + " " + result);
 			break;
 		case ERROR:
 		default:
-			logger.fatal("TEST " + this.id + " " + result);
+			logger.fatal("TEST CASE " + this.id + " " + result);
 			break;
 		}
 		logSeparator();

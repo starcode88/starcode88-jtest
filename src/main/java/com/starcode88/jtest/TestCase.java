@@ -43,7 +43,7 @@ public class TestCase {
 	 * @param desc
 	 * @throws TestExecutionError
 	 */
-	private void handleTestExecutionError(Throwable e,
+	private static void handleTestExecutionError(Throwable e,
 						TestCaseDescription desc) throws TestExecutionError {
 		
 		String unexpectedException = TextBuilder.unexpectedException(e); 
@@ -66,7 +66,7 @@ public class TestCase {
 	 * @throws TestExecutionError Will be thrown in case of an unexpected
 	 *                            exception
 	 */
-	public void runTest(TestCaseDescription desc,
+	public static void runTest(TestCaseDescription desc,
 						TestRunner runner) throws TestExecutionError {
 		try {
 			desc.logHeader();

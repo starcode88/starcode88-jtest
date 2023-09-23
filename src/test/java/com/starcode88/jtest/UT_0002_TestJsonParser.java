@@ -2,6 +2,7 @@ package com.starcode88.jtest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,11 @@ class UT_0002_TestJsonParser extends TestCaseDescribed {
 	@BeforeAll
 	public static void setUpBeforeClass() throws InitializationError {
 		setUpBeforeClass(getTestClassId());
+	}
+
+	@AfterAll
+	public static void tearDownAfterClass() {
+		TestCaseDescribed.tearDownAfterClass();
 	}
 	
 	@Test

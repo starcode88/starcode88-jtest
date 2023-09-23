@@ -2,10 +2,13 @@ package com.starcode88.jtest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -32,8 +35,20 @@ public class TestCaseDescribed extends TestCase {
 			}
 		}
 	}
+
+	public static void tearDownAfterClass() {
+		/*
+		if (descs != null) {
+			ObjectMapper mapper = new ObjectMapper();
+			try {
+				mapper.writerWithDefaultPrettyPrinter().writeValue(new File("testresults.json"), descs);
+			} catch (IOException e) {
+				logger.fatal("Failed to write test results to file \"testresults.json\"", e);
+			}
+		}*/
+	}
 	
-	public void runTest(String id, TestRunner runner) throws TestExecutionError {
+	public static void runTest(String id, TestRunner runner) throws TestExecutionError {
 		if (id == null) throw logger.throwing(new IllegalArgumentException("The argument <id> is null."));
 		if (runner == null) throw logger.throwing(new IllegalArgumentException("The argument <runner> is null."));
 
@@ -41,16 +56,17 @@ public class TestCaseDescribed extends TestCase {
 			throw logger.throwing(new TestExecutionError("The list of test case descriptions is null. It should have been loaded already in method setUpBeforeClass. Maybe we forgot to call the method setUpBeforeClass before running the test implementation"));
 		}
 		
-		
 		TestCaseDescription desc = descs.get(id);
 		if (desc == null) {
 			logger.warn("No description for test case " + id + " found.");
+			ArrayList<TestStep> testSteps = new ArrayList<TestStep>();
+			TestStep testStep = new TestStep();
+			testSteps.add(testStep);
 			desc = new TestCaseDescription(
 					id, 
 					"No description available because test case with id "
 					+ id + " hasn't be found in the test case descriptions.",
-					"n/a", 
-					"n/a");
+					testSteps);
 		}
 		runTest(desc, runner);
 	}

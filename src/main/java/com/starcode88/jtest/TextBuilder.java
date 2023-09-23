@@ -24,10 +24,14 @@ public class TextBuilder {
 	public static String prepareForSingleTestInClass(String classId) {
 		return "Prepare test setup for single test in test class " + classId;
 	}
-	
+
 	public static String formatParagraph(String paragraph, String indentation, int maxLength) {
+		return formatParagraph(paragraph, indentation, indentation, maxLength);
+	}
+	
+	public static String formatParagraph(String paragraph, String firstIndentation, String indentation, int maxLength) {
 		StringBuilder outString = new StringBuilder(4096);
-		String currentLine = indentation;
+		String currentLine = firstIndentation;
 		String[] words = paragraph.split("\\s+");
 		Iterator<String> iter = Arrays.asList(words).iterator();
 		while(iter.hasNext()) {
