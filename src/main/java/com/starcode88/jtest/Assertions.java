@@ -72,6 +72,22 @@ public class Assertions {
 		}
 	}
 
+	public static void assertEquals(boolean expected, boolean actual) {
+		try {
+			org.junit.jupiter.api.Assertions.assertEquals(expected, actual);
+		} catch (AssertionError e) {
+			throw logger.throwing(assertionFailedLevel, e);
+		}
+	}
+
+	public static void assertEquals(boolean expected, boolean actual, String message) {
+		try {
+			org.junit.jupiter.api.Assertions.assertEquals(expected, actual, message);
+		} catch (AssertionError e) {
+			throw logger.throwing(assertionFailedLevel, e);
+		}
+	}
+
 	public static void assertFalse(boolean condition) {
 		try {
 			org.junit.jupiter.api.Assertions.assertFalse(condition);

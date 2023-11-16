@@ -20,6 +20,16 @@ public class TestCaseDescriptions {
 
 	private List<TestCaseDescription> testcases = null;
 	
+	private int modelVersion = 0;
+	
+	public int getModelVersion() {
+		return modelVersion;
+	}
+
+	public void setModelVersion(int modelVersion) {
+		this.modelVersion = modelVersion;
+	}
+
 	public List<TestCaseDescription> getTestcases() {
 		return testcases;
 	}
