@@ -31,7 +31,7 @@ public class TestCase {
 	 * Call this function here from your setUp method in your class.
 	 * @param classId
 	 */
-	public void setUp(String classId) {
+	public static void setUp(String classId) {
 		logger.info(TextBuilder.SINGLE_LINE);
 		logger.info(TextBuilder.prepareForSingleTestInClass(classId));
 	}
